@@ -1,0 +1,7 @@
+{
+    "credentials": {
+        "username": "test-username",
+        "password": "test-password",
+        "csvurl": "https://robotsparebinindustries.com/orders.csv"
+    }
+}
