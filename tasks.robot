@@ -18,20 +18,19 @@ Order robots from RobotSpareBin Industries Inc
     ${secret}=    Get and log the value of the vault secrets using the Get Secret keyword
     Open the robot order website
     ${orders}=    Get orders    ${secret}
-    Log    ${orders}
-    #FOR    ${row}    IN    @{orders}
-    #    Close the annoying modal
-    #    Fill the form    ${row}
-    #    Preview the robot
-    #    Submit the order
-    #    ${pdf}=    Store the receipt as a PDF file    ${row}[Order number]
-    #    ${screenshot}=    Take a screenshot of the robot    ${row}[Order number]
-    #    Embed the robot screenshot to the receipt PDF file    ${screenshot}    ${pdf}
-    #    Go to order another robot
-    #END
-    #Create a ZIP file of the receipts
-    #Close the annoying modal
-    #[Teardown]    Close the browser
+    FOR    ${row}    IN    @{orders}
+        Close the annoying modal
+        Fill the form    ${row}
+        Preview the robot
+        Submit the order
+        ${pdf}=    Store the receipt as a PDF file    ${row}[Order number]
+        ${screenshot}=    Take a screenshot of the robot    ${row}[Order number]
+        Embed the robot screenshot to the receipt PDF file    ${screenshot}    ${pdf}
+        Go to order another robot
+    END
+    Create a ZIP file of the receipts
+    Close the annoying modal
+    [Teardown]    Close the browser
 
 
 *** Keywords ***
